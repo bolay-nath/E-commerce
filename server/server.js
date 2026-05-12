@@ -27,20 +27,41 @@ mongoose
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "DELETE", "PUT"],
+    origin: CLIENT_URL,
+    methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
     allowedHeaders: [
       "Content-Type",
       "Authorization",
       "Cache-Control",
       "Expires",
       "Pragma",
+      "X-Requested-With",
     ],
     credentials: true,
   }),
 );
+
+app.options("*", cors({ origin: CLIENT_URL, credentials: true }));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", CLIENT_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control, Expires, Pragma",
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+
+  next();
+});
 
 app.use(cookieParser());
 app.use(express.json());
