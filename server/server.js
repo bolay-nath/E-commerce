@@ -16,9 +16,6 @@ const shopReviewRouter = require("./routes/shop/review-routes");
 const commonFeatureRouter = require("./routes/common/feature-routes");
 require("dotenv").config();
 
-//create a database connection -> u can also
-//create a separate file for this and then import/use that file here
-
 mongoose
   .connect(process.env.URL)
   .then(() => console.log("MongoDB connected"))
@@ -27,9 +24,15 @@ mongoose
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Allow both local and production frontends
+const allowedOrigins = [
+  "http://localhost:5173",                           // Local development
+  "https://e-commerce-alpha-flame-84.vercel.app",   // Production
+];
+
 app.use(
   cors({
-    origin: "https://e-commerce-alpha-flame-84.vercel.app",
+    origin: allowedOrigins,
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
