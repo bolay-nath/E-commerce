@@ -2,7 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const API_URL =
-  import.meta.env.VITE_API_URL || "https://e-commerce-mvs6.onrender.com";
+  import.meta.env.VITE_API_URL || "https://e-commerce-wauo.onrender.com";
 
 const initialState = {
   cartItems: [],

@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://e-commerce-mvs6.onrender.com";
+const API_URL =
+  import.meta.env.VITE_API_URL || "https://e-commerce-wauo.onrender.com";
 
 const initialState = {
   orderList: [],
@@ -11,9 +12,7 @@ const initialState = {
 export const getAllOrdersForAdmin = createAsyncThunk(
   "/order/getAllOrdersForAdmin",
   async () => {
-    const response = await axios.get(
-      `${API_URL}/api/admin/orders/get`,
-    );
+    const response = await axios.get(`${API_URL}/api/admin/orders/get`);
 
     return response.data;
   },
