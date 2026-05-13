@@ -51,7 +51,7 @@ function ProductImageUpload({
       formData.append("my_file", imageFile);
       setImageLoadingState(true);
       const response = await axios.post(
-        "https://e-commerce-mvs6.onrender.com/api/admin/products/upload-image",
+        "process.env.VITE_API_URL/api/admin/products/upload-image",
         formData,
       );
       console.log(response, "response");
