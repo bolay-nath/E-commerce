@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://e-commerce-mvs6.onrender.com";
+const API_URL =
+  import.meta.env.VITE_API_URL || "https://e-commerce-mvs6.onrender.com";
 
 const initialState = {
   isLoading: false,
@@ -19,9 +20,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
       sortBy: sortParams,
     });
 
-    const result = await axios.get(
-      `${API_URL}/api/shop/products/get?${query}`,
-    );
+    const result = await axios.get(`${API_URL}/api/shop/products/get?${query}`);
 
     console.log(result);
 
@@ -32,9 +31,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
 export const fetchProductDetails = createAsyncThunk(
   "/products/fetchProductDetails",
   async (id) => {
-    const result = await axios.get(
-      `${API_URL}/api/shop/products/get/${id}`,
-    );
+    const result = await axios.get(`${API_URL}/api/shop/products/get/${id}`);
 
     return result?.data;
   },

@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://e-commerce-mvs6.onrender.com";
+const API_URL =
+  import.meta.env.VITE_API_URL || "https://e-commerce-mvs6.onrender.com";
 
 const initialState = {
   isLoading: false,

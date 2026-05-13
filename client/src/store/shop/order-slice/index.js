@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://e-commerce-mvs6.onrender.com";
+const API_URL =
+  import.meta.env.VITE_API_URL || "https://e-commerce-mvs6.onrender.com";
 
 const initialState = {
   approvalURL: null,
@@ -26,14 +27,11 @@ export const createNewOrder = createAsyncThunk(
 export const capturePayment = createAsyncThunk(
   "/order/capturePayment",
   async ({ paymentId, payerId, orderId }) => {
-    const response = await axios.post(
-      `${API_URL}/api/shop/order/capture`,
-      {
-        paymentId,
-        payerId,
-        orderId,
-      },
-    );
+    const response = await axios.post(`${API_URL}/api/shop/order/capture`, {
+      paymentId,
+      payerId,
+      orderId,
+    });
 
     return response.data;
   },
@@ -53,9 +51,7 @@ export const getAllOrdersByUserId = createAsyncThunk(
 export const getOrderDetails = createAsyncThunk(
   "/order/getOrderDetails",
   async (id) => {
-    const response = await axios.get(
-      `${API_URL}/api/shop/order/details/${id}`,
-    );
+    const response = await axios.get(`${API_URL}/api/shop/order/details/${id}`);
 
     return response.data;
   },
