@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL || "https://e-commerce-mvs6.onrender.com";
+
 const initialState = {
   isAuthenticated: false,
   isLoading: true,
@@ -12,7 +14,7 @@ export const registerUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "process.env.VITE_API_URL/api/auth/register",
+      `${API_URL}/api/auth/register`,
       formData,
       {
         withCredentials: true,
@@ -28,7 +30,7 @@ export const loginUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "process.env.VITE_API_URL/api/auth/login",
+      `${API_URL}/api/auth/login`,
       formData,
       {
         withCredentials: true,
@@ -44,7 +46,7 @@ export const logoutUser = createAsyncThunk(
 
   async () => {
     const response = await axios.post(
-      "process.env.VITE_API_URL/api/auth/logout",
+      `${API_URL}/api/auth/logout`,
       {},
       {
         withCredentials: true,
@@ -60,7 +62,7 @@ export const checkAuth = createAsyncThunk(
 
   async () => {
     const response = await axios.get(
-      "process.env.VITE_API_URL/api/auth/check-auth",
+      `${API_URL}/api/auth/check-auth`,
       {
         withCredentials: true,
         headers: {
